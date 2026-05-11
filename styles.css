@@ -1318,21 +1318,21 @@ svg {
   height: 58px;
   border: 3px solid rgba(255, 253, 249, 0.96);
   border-radius: 999px;
-  background-image: url("assets/cover-cartoon.png");
+  background-image: url("assets/game-couple.png");
   background-repeat: no-repeat;
-  background-size: 260px auto;
+  background-size: 260px 390px;
   box-shadow: 0 12px 28px rgba(37, 33, 28, 0.2);
 }
 
 .runner-groom {
   left: 10px;
-  background-position: -76px -44px;
+  background-position: -66px -72px;
   transform: rotate(-5deg);
 }
 
 .runner-bride {
   left: 54px;
-  background-position: -132px -58px;
+  background-position: -141px -56px;
   transform: rotate(6deg);
 }
 

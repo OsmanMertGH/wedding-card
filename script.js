@@ -109,8 +109,8 @@ function setupGamePreview() {
   gameState.variantIndex = 0;
   gameState.obstacleX = Math.max(230, gameStage.clientWidth - 150);
   gameScore.textContent = "0";
-  gameStatus.textContent = "Dokun ve zıpla";
-  gameButton.textContent = "Zıpla";
+  gameStatus.textContent = "Dokun ve zıp de";
+  gameButton.textContent = "Zıp De";
   gameObstacle.className = "italy-obstacle pisa";
   gameObstacle.dataset.place = "Pisa";
   gameObstacle.style.transform = `translateX(${gameState.obstacleX}px)`;
@@ -128,8 +128,8 @@ function startGame() {
   gameState.variantIndex = 0;
 
   gameScore.textContent = "0";
-  gameStatus.textContent = "Zıpla!";
-  gameButton.textContent = "Zıpla";
+  gameStatus.textContent = "Zıp de!";
+  gameButton.textContent = "Zıp De";
   weddingGame.classList.add("is-running");
   gameRunner?.classList.remove("is-jumping");
   resetObstacle();
@@ -199,7 +199,7 @@ function endGame() {
   window.cancelAnimationFrame(gameState.animationFrame);
   weddingGame?.classList.remove("is-running");
   gameRunner?.classList.remove("is-jumping");
-  gameButton.textContent = "Tekrar Başlat";
+  gameButton.textContent = "Tekrar Zıp De";
   gameStatus.textContent = `Skor ${gameState.score} - tekrar deneyin`;
 }
 
