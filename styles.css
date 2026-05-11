@@ -1345,24 +1345,24 @@ svg {
 
 .game-runner {
   position: absolute;
-  left: 28px;
+  left: 34px;
   bottom: 38px;
-  width: 220px;
-  height: 154px;
+  width: 190px;
+  height: 138px;
   z-index: 4;
   transition: transform 0.42s cubic-bezier(0.25, 0.9, 0.3, 1.18);
 }
 
 .game-runner.is-jumping {
-  transform: translateY(-70px);
+  transform: translateY(-66px);
 }
 
 .runner-couple {
   position: absolute;
   left: 50%;
   bottom: 4px;
-  width: 220px;
-  height: 150px;
+  width: 190px;
+  height: 134px;
   background-image: url("./assets/game-vespa-couple-transparent.png");
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -1828,14 +1828,14 @@ svg {
   }
 
   .game-runner {
-    left: 18px;
+    left: 22px;
     bottom: 38px;
-    transform: scale(0.76);
+    transform: scale(0.74);
     transform-origin: left bottom;
   }
 
   .game-runner.is-jumping {
-    transform: translateY(-54px) scale(0.76);
+    transform: translateY(-52px) scale(0.74);
   }
 
   .italy-obstacle {
