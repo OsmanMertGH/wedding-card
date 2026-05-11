@@ -105,7 +105,7 @@ svg {
   background-position: center 34%;
   background-size: cover;
   filter: saturate(0.82) brightness(1.08);
-  opacity: 0.42;
+  opacity: 0.56;
   transform: scale(1.04);
   animation: photoDrift 16s ease-in-out infinite alternate;
 }
@@ -115,8 +115,8 @@ svg {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 36%, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0.78) 54%, rgba(251, 250, 247, 0.94) 100%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.48), rgba(251, 250, 247, 0.92));
+    radial-gradient(circle at 50% 36%, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.62) 54%, rgba(251, 250, 247, 0.88) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(251, 250, 247, 0.84));
 }
 
 @keyframes photoDrift {
@@ -708,12 +708,12 @@ svg {
   width: 6px;
   height: 6px;
   border-radius: 999px;
-  background: rgba(185, 149, 85, 0.52);
+  background: rgba(185, 149, 85, 0.62);
   box-shadow:
-    0 0 0 7px rgba(185, 149, 85, 0.06),
-    0 0 22px rgba(185, 149, 85, 0.22);
+    0 0 0 8px rgba(185, 149, 85, 0.075),
+    0 0 26px rgba(185, 149, 85, 0.28);
   opacity: 0;
-  animation: contentDotFloat 5.8s ease-in-out infinite;
+  animation: contentDotFloat 5.2s ease-in-out infinite;
 }
 
 .content-dots span:nth-child(1) {
@@ -799,6 +799,50 @@ svg {
   animation-delay: -5.4s;
 }
 
+.content-dots span:nth-child(13) {
+  left: 31%;
+  top: 16%;
+  width: 5px;
+  height: 5px;
+  animation-delay: -0.4s;
+}
+
+.content-dots span:nth-child(14) {
+  right: 31%;
+  top: 23%;
+  animation-delay: -2.9s;
+}
+
+.content-dots span:nth-child(15) {
+  left: 18%;
+  top: 39%;
+  width: 4px;
+  height: 4px;
+  animation-delay: -4.5s;
+}
+
+.content-dots span:nth-child(16) {
+  right: 22%;
+  top: 48%;
+  width: 5px;
+  height: 5px;
+  animation-delay: -1.8s;
+}
+
+.content-dots span:nth-child(17) {
+  left: 29%;
+  top: 69%;
+  animation-delay: -3.6s;
+}
+
+.content-dots span:nth-child(18) {
+  right: 25%;
+  top: 76%;
+  width: 4px;
+  height: 4px;
+  animation-delay: -5.1s;
+}
+
 @keyframes contentDotFloat {
   0%,
   100% {
@@ -808,7 +852,7 @@ svg {
 
   38%,
   62% {
-    opacity: 0.62;
+    opacity: 0.76;
     transform: translate3d(0, -8px, 0) scale(1);
   }
 }
