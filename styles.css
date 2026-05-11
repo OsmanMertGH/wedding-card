@@ -1317,8 +1317,10 @@ svg {
   bottom: 7px;
   width: 118px;
   height: 136px;
-  object-fit: contain;
-  object-position: center bottom;
+  background-image: url("assets/game-couple.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
   filter:
     drop-shadow(0 12px 20px rgba(37, 33, 28, 0.2))
     drop-shadow(0 0 10px rgba(255, 255, 255, 0.46));
