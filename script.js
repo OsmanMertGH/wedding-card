@@ -5,6 +5,8 @@ const content = document.querySelector("#content");
 const openButton = document.querySelector("#openInvite");
 const calendarLink = document.querySelector("#calendarLink");
 const shareButton = document.querySelector("#shareInvite");
+const scrollCue = document.querySelector("#scrollCue");
+const detailsSection = document.querySelector("#details-title");
 
 const countdownTargets = {
   days: document.querySelector("#days"),
@@ -87,6 +89,11 @@ function buildCalendarLink() {
   calendarLink.href = `https://calendar.google.com/calendar/render?${params.toString()}`;
 }
 
+function hideScrollCue() {
+  if (document.body.classList.contains("is-locked")) return;
+  scrollCue?.classList.add("is-hidden");
+}
+
 async function shareInvitation() {
   if (!shareButton) return;
 
@@ -130,6 +137,21 @@ shareButton?.addEventListener("click", () => {
     }, 2200);
   });
 });
+
+scrollCue?.addEventListener("click", () => {
+  hideScrollCue();
+  detailsSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+window.addEventListener(
+  "scroll",
+  () => {
+    if (window.scrollY > 12) hideScrollCue();
+  },
+  { passive: true },
+);
+window.addEventListener("wheel", hideScrollCue, { passive: true });
+window.addEventListener("touchmove", hideScrollCue, { passive: true });
 
 buildCalendarLink();
 updateCountdown();

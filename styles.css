@@ -1117,7 +1117,30 @@ svg {
   justify-items: center;
   gap: 10px;
   margin-top: 42px;
+  padding: 16px 22px 14px;
+  border: 1px solid rgba(185, 149, 85, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.64);
   color: var(--muted);
+  cursor: pointer;
+  box-shadow: 0 16px 42px rgba(37, 33, 28, 0.07);
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.scroll-cue:hover {
+  border-color: rgba(185, 149, 85, 0.38);
+  box-shadow: 0 20px 48px rgba(37, 33, 28, 0.1);
+  transform: translateY(-2px);
+}
+
+.scroll-cue.is-hidden {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
 }
 
 .scroll-cue span {
