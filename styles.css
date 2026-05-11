@@ -7,6 +7,8 @@
   --line: rgba(37, 33, 28, 0.12);
   --gold: #b99555;
   --gold-soft: #eadcc0;
+  --seal-red: #b3232f;
+  --seal-red-dark: #7f111c;
   --sage: #7b8371;
   --shadow: 0 28px 80px rgba(37, 33, 28, 0.12);
 }
@@ -303,7 +305,7 @@ svg {
 }
 
 .cover h1 {
-  margin: 16px 0 10px;
+  margin: 0 0 10px;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: clamp(4.6rem, 13vw, 8.8rem);
   font-weight: 500;
@@ -311,14 +313,15 @@ svg {
   line-height: 0.74;
 }
 
-.cover h1 span {
+.cover-heart {
   display: block;
   margin: 18px 0 14px;
-  color: var(--sage);
+  color: var(--seal-red);
   font-family: "Manrope", "Segoe UI", Arial, sans-serif;
-  font-size: clamp(1rem, 4vw, 1.7rem);
+  font-size: clamp(1.35rem, 4.8vw, 2.1rem);
   font-weight: 400;
   line-height: 1;
+  text-shadow: 0 10px 24px rgba(127, 17, 28, 0.18);
 }
 
 .cover-date {
@@ -504,7 +507,7 @@ svg {
   border-radius: 999px;
   background:
     radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.36), transparent 34%),
-    linear-gradient(135deg, #b3232f, #7f111c);
+    linear-gradient(135deg, var(--seal-red), var(--seal-red-dark));
   color: #fffaf2;
   font-size: 0.86rem;
   font-weight: 800;
