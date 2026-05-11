@@ -98,7 +98,23 @@ const gameState = {
   score: 0,
   speed: 230,
   variantIndex: 0,
+  idleTime: 0,
 };
+
+function setupGamePreview() {
+  if (!gameStage || !gameObstacle) return;
+
+  gameState.running = false;
+  gameState.score = 0;
+  gameState.variantIndex = 0;
+  gameState.obstacleX = Math.max(230, gameStage.clientWidth - 150);
+  gameScore.textContent = "0";
+  gameStatus.textContent = "Dokun ve zıpla";
+  gameButton.textContent = "Zıpla";
+  gameObstacle.className = "italy-obstacle pisa";
+  gameObstacle.dataset.place = "Pisa";
+  gameObstacle.style.transform = `translateX(${gameState.obstacleX}px)`;
+}
 
 function startGame() {
   if (!weddingGame || !gameStage || !gameObstacle) return;
@@ -123,7 +139,6 @@ function startGame() {
 function jumpGame() {
   if (!gameState.running) {
     startGame();
-    return;
   }
 
   if (gameState.jumping || !gameRunner) return;
@@ -266,6 +281,7 @@ window.addEventListener(
 );
 window.addEventListener("wheel", hideScrollCue, { passive: true });
 window.addEventListener("touchmove", hideScrollCue, { passive: true });
+window.addEventListener("resize", setupGamePreview);
 
 gameButton?.addEventListener("click", (event) => {
   event.stopPropagation();
@@ -281,5 +297,6 @@ weddingGame?.addEventListener("keydown", (event) => {
 });
 
 buildCalendarLink();
+setupGamePreview();
 updateCountdown();
 window.setInterval(updateCountdown, 1000);

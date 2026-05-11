@@ -1360,6 +1360,36 @@ svg {
   will-change: transform;
 }
 
+.wedding-game:not(.is-running) .game-runner {
+  animation: idleBounce 1.35s ease-in-out infinite;
+}
+
+.wedding-game:not(.is-running) .italy-obstacle {
+  animation: idleObstacle 1.7s ease-in-out infinite;
+}
+
+@keyframes idleBounce {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+@keyframes idleObstacle {
+  0%,
+  100% {
+    filter: drop-shadow(0 10px 12px rgba(37, 33, 28, 0.08));
+  }
+
+  50% {
+    filter: drop-shadow(0 14px 16px rgba(37, 33, 28, 0.12));
+  }
+}
+
 .italy-obstacle::after {
   content: attr(data-place);
   position: absolute;
