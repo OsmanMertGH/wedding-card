@@ -15,6 +15,10 @@ const gameObstacleImage = document.querySelector("#gameObstacleImage");
 const gameButton = document.querySelector("#gameButton");
 const gameScore = document.querySelector("#gameScore");
 const gameStatus = document.querySelector("#gameStatus");
+const scoreList = document.querySelector("#scoreList");
+const scoreForm = document.querySelector("#scoreForm");
+const scoreNameInput = document.querySelector("#scoreName");
+const scoreNotice = document.querySelector("#scoreNotice");
 const languageSwitch = document.querySelector(".language-switch");
 const languageButtons = document.querySelectorAll("[data-language]");
 const metaDescription = document.querySelector('meta[name="description"]');
@@ -87,6 +91,18 @@ const translations = {
     "game.success": "Harika!",
     "game.tour": "İtalya turu!",
     "game.end": "Skor {score} - tekrar deneyin",
+    "score.kicker": "Bu cihazdaki",
+    "score.title": "İlk 5 Skor",
+    "score.storage": "Tarayıcıda saklanır",
+    "score.nameLabel": "Skor için adınızı yazın",
+    "score.placeholder": "Adınız",
+    "score.save": "Kaydet",
+    "score.empty": "Henüz skor yok. İlk rekor sizden gelsin.",
+    "score.ready": "En iyi 5 skor bu cihazda saklanır.",
+    "score.newRecord": "{score} puan ilk 5'e girdi. Adınızı yazıp kaydedin.",
+    "score.saved": "Skor kaydedildi. Güzel kaçış!",
+    "score.notTop": "{score} puan bu kez ilk 5'e giremedi.",
+    "score.guest": "Misafir",
     "footer.text": "Gizem & Osman · 01 Ağustos 2026",
     "calendar.title": "Gizem & Osman Düğün Töreni",
     "calendar.details": "Gizem ve Osman'ın düğün töreni. Tarih: 01 Ağustos 2026 Cumartesi, Saat: 19:00.",
@@ -153,6 +169,18 @@ const translations = {
     "game.success": "Lovely!",
     "game.tour": "Italy tour!",
     "game.end": "Score {score} - try again",
+    "score.kicker": "On this device",
+    "score.title": "Top 5 Scores",
+    "score.storage": "Saved in browser",
+    "score.nameLabel": "Enter your name for the score",
+    "score.placeholder": "Your name",
+    "score.save": "Save",
+    "score.empty": "No scores yet. Be the first record.",
+    "score.ready": "The best 5 scores are saved on this device.",
+    "score.newRecord": "{score} points made the top 5. Add your name to save it.",
+    "score.saved": "Score saved. Beautiful escape!",
+    "score.notTop": "{score} points did not reach the top 5 this time.",
+    "score.guest": "Guest",
     "footer.text": "Gizem & Osman · August 1, 2026",
     "calendar.title": "Gizem & Osman Wedding Ceremony",
     "calendar.details": "Gizem and Osman's wedding ceremony. Date: Saturday, August 1, 2026, Time: 19:00.",
@@ -219,6 +247,18 @@ const translations = {
     "game.success": "Bellissimo!",
     "game.tour": "Tour d'Italia!",
     "game.end": "Punti {score} - riprova",
+    "score.kicker": "Su questo dispositivo",
+    "score.title": "Migliori 5 punteggi",
+    "score.storage": "Salvato nel browser",
+    "score.nameLabel": "Scrivi il tuo nome per il punteggio",
+    "score.placeholder": "Il tuo nome",
+    "score.save": "Salva",
+    "score.empty": "Ancora nessun punteggio. Fate il primo record.",
+    "score.ready": "I migliori 5 punteggi sono salvati su questo dispositivo.",
+    "score.newRecord": "{score} punti entrano nella top 5. Scrivi il tuo nome per salvarli.",
+    "score.saved": "Punteggio salvato. Che bella fuga!",
+    "score.notTop": "{score} punti non entrano nella top 5 questa volta.",
+    "score.guest": "Ospite",
     "footer.text": "Gizem & Osman · 1 agosto 2026",
     "calendar.title": "Matrimonio di Gizem & Osman",
     "calendar.details": "Matrimonio di Gizem e Osman. Data: sabato 1 agosto 2026, ore 19:00.",
@@ -237,6 +277,11 @@ const htmlLanguageCodes = {
 
 let currentLanguage = "tr";
 let shareResetTimer = 0;
+let pendingScore = 0;
+let scoreNoticeState = { key: "score.empty", replacements: {} };
+let memoryLeaderboard = [];
+
+const leaderboardKey = "gizem-osman-runner-leaderboard-v1";
 
 function t(key, replacements = {}) {
   const template = translations[currentLanguage]?.[key] ?? translations.tr[key] ?? key;
@@ -265,6 +310,10 @@ function applyLanguage(language) {
     element.setAttribute("aria-label", t(element.dataset.i18nAria));
   });
 
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+    element.setAttribute("placeholder", t(element.dataset.i18nPlaceholder));
+  });
+
   languageButtons.forEach((button) => {
     const isActive = button.dataset.language === language;
     button.classList.toggle("is-active", isActive);
@@ -273,6 +322,8 @@ function applyLanguage(language) {
 
   buildCalendarLink();
   updateGameLanguage();
+  updateScoreNotice();
+  renderLeaderboard({ preserveNotice: true });
 }
 
 function openInvitation() {
@@ -397,6 +448,117 @@ function updateGameLanguage() {
   setupGamePreview();
 }
 
+function normalizeLeaderboard(entries) {
+  if (!Array.isArray(entries)) return [];
+
+  return entries
+    .map((entry) => ({
+      name: String(entry?.name ?? "").trim().slice(0, 18) || t("score.guest"),
+      score: Number.parseInt(entry?.score, 10) || 0,
+      date: Number.parseInt(entry?.date, 10) || Date.now(),
+    }))
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score || b.date - a.date)
+    .slice(0, 5);
+}
+
+function loadLeaderboard() {
+  try {
+    return normalizeLeaderboard(JSON.parse(window.localStorage.getItem(leaderboardKey) || "[]"));
+  } catch {
+    return normalizeLeaderboard(memoryLeaderboard);
+  }
+}
+
+function saveLeaderboard(entries) {
+  const normalized = normalizeLeaderboard(entries);
+  memoryLeaderboard = normalized;
+
+  try {
+    window.localStorage.setItem(leaderboardKey, JSON.stringify(normalized));
+  } catch {
+    // The board can still render the current in-memory result for this page load.
+  }
+
+  return normalized;
+}
+
+function scoreQualifies(score) {
+  if (score <= 0) return false;
+
+  const entries = loadLeaderboard();
+  return entries.length < 5 || score >= entries[entries.length - 1].score;
+}
+
+function setScoreNotice(key, replacements = {}) {
+  scoreNoticeState = { key, replacements };
+  updateScoreNotice();
+}
+
+function updateScoreNotice() {
+  if (!scoreNotice) return;
+  scoreNotice.textContent = t(scoreNoticeState.key, scoreNoticeState.replacements);
+}
+
+function renderLeaderboard({ preserveNotice = false } = {}) {
+  if (!scoreList) return;
+
+  const entries = loadLeaderboard();
+  scoreList.replaceChildren();
+
+  entries.forEach((entry, index) => {
+    const item = document.createElement("li");
+    const rank = document.createElement("span");
+    const player = document.createElement("span");
+    const points = document.createElement("strong");
+
+    rank.className = "score-rank";
+    player.className = "score-player";
+    points.className = "score-points";
+
+    rank.textContent = String(index + 1);
+    player.textContent = entry.name;
+    points.textContent = String(entry.score);
+
+    item.append(rank, player, points);
+    scoreList.append(item);
+  });
+
+  if (preserveNotice || !scoreNotice) return;
+  setScoreNotice(entries.length ? "score.ready" : "score.empty");
+}
+
+function offerScoreSave(score) {
+  if (!scoreForm) return;
+
+  pendingScore = score;
+  scoreForm.hidden = true;
+
+  if (!scoreQualifies(score)) {
+    setScoreNotice(score > 0 ? "score.notTop" : "score.ready", { score });
+    return;
+  }
+
+  scoreForm.hidden = false;
+  setScoreNotice("score.newRecord", { score });
+}
+
+function submitScore(event) {
+  event.preventDefault();
+  if (!pendingScore || !scoreForm) return;
+
+  const name = scoreNameInput?.value.trim().slice(0, 18) || t("score.guest");
+  const entries = loadLeaderboard();
+  entries.push({ name, score: pendingScore, date: Date.now() });
+  saveLeaderboard(entries);
+
+  pendingScore = 0;
+  scoreForm.hidden = true;
+  if (scoreNameInput) scoreNameInput.value = "";
+  setScoreNotice("score.saved");
+  renderLeaderboard({ preserveNotice: true });
+}
+
 function startGame() {
   if (!weddingGame || !gameStage || !gameObstacle) return;
 
@@ -407,6 +569,9 @@ function startGame() {
   gameState.speed = 230;
   gameState.lastTime = 0;
   gameState.variantIndex = -1;
+  pendingScore = 0;
+  if (scoreForm) scoreForm.hidden = true;
+  renderLeaderboard();
 
   gameScore.textContent = "0";
   gameStatus.textContent = t("game.running");
@@ -485,6 +650,7 @@ function endGame() {
   gameRunner?.classList.remove("is-jumping");
   gameButton.textContent = t("game.restart");
   gameStatus.textContent = t("game.end", { score: gameState.score });
+  offerScoreSave(gameState.score);
 }
 
 function buildCalendarLink() {
@@ -592,6 +758,8 @@ gameButton?.addEventListener("click", (event) => {
 
 gameStage?.addEventListener("click", jumpGame);
 
+scoreForm?.addEventListener("submit", submitScore);
+
 weddingGame?.addEventListener("keydown", (event) => {
   if (event.key !== "Enter" && event.key !== " ") return;
   event.preventDefault();
@@ -599,5 +767,6 @@ weddingGame?.addEventListener("keydown", (event) => {
 });
 
 applyLanguage("tr");
+renderLeaderboard();
 updateCountdown();
 window.setInterval(updateCountdown, 1000);

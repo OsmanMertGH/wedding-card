@@ -436,6 +436,34 @@
 
             <button class="game-button" id="gameButton" type="button">Zıp De</button>
           </div>
+
+          <div class="score-board reveal" aria-labelledby="scoreboard-title">
+            <div class="score-board-head">
+              <div>
+                <p data-i18n="score.kicker">Bu cihazdaki</p>
+                <h3 id="scoreboard-title" data-i18n="score.title">İlk 5 Skor</h3>
+              </div>
+              <span data-i18n="score.storage">Tarayıcıda saklanır</span>
+            </div>
+
+            <ol id="scoreList" class="score-list" aria-live="polite"></ol>
+
+            <form class="score-form" id="scoreForm" hidden>
+              <label for="scoreName" data-i18n="score.nameLabel">Skor için adınızı yazın</label>
+              <div class="score-form-row">
+                <input
+                  id="scoreName"
+                  maxlength="18"
+                  autocomplete="name"
+                  placeholder="Adınız"
+                  data-i18n-placeholder="score.placeholder"
+                />
+                <button type="submit" data-i18n="score.save">Kaydet</button>
+              </div>
+            </form>
+
+            <p class="score-notice" id="scoreNotice">Henüz skor yok. İlk rekor sizden gelsin.</p>
+          </div>
         </div>
       </section>
     </main>
