@@ -1317,7 +1317,7 @@ svg {
   bottom: 7px;
   width: 118px;
   height: 136px;
-  background-image: url("assets/game-couple.png");
+  background-image: url("./assets/game-couple.png");
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: contain;
