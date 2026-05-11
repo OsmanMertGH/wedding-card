@@ -131,8 +131,7 @@ function setupGamePreview() {
   gameButton.textContent = "Zıp De";
   gameObstacle.className = "italy-obstacle image-obstacle";
   gameObstacle.dataset.place = "Pisa";
-  gameObstacleImage.src = "assets/obstacles/pisa_tower.png";
-  gameObstacleImage.alt = "";
+  gameObstacleImage.style.backgroundImage = 'url("assets/obstacles/pisa_tower.png")';
   gameObstacle.style.transform = `translateX(${gameState.obstacleX}px)`;
 }
 
@@ -212,8 +211,7 @@ function resetObstacle() {
   gameState.passedObstacle = false;
   gameObstacle.className = "italy-obstacle image-obstacle";
   gameObstacle.dataset.place = variant.label;
-  gameObstacleImage.src = variant.src;
-  gameObstacleImage.alt = "";
+  gameObstacleImage.style.backgroundImage = `url("${variant.src}")`;
   gameObstacle.style.transform = `translateX(${gameState.obstacleX}px)`;
 }
 
