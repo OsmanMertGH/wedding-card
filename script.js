@@ -1,9 +1,11 @@
 const weddingDate = new Date("2026-08-01T20:00:00+03:00");
+
 const cover = document.querySelector("#cover");
 const content = document.querySelector("#content");
 const openButton = document.querySelector("#openInvite");
 const petals = document.querySelector("#petals");
 const calendarLink = document.querySelector("#calendarLink");
+const shareButton = document.querySelector("#shareInvite");
 
 const countdownTargets = {
   days: document.querySelector("#days"),
@@ -13,7 +15,7 @@ const countdownTargets = {
 };
 
 function openInvitation() {
-  if (cover.classList.contains("open")) return;
+  if (!cover || cover.classList.contains("open")) return;
 
   cover.classList.add("open");
   document.body.classList.remove("is-locked");
@@ -21,13 +23,15 @@ function openInvitation() {
 
   window.setTimeout(() => {
     cover.style.display = "none";
-    content.focus({ preventScroll: true });
-    content.scrollIntoView({ behavior: "smooth", block: "start" });
+    content?.focus({ preventScroll: true });
+    content?.scrollIntoView({ behavior: "smooth", block: "start" });
     initReveal();
   }, 900);
 }
 
 function spawnPetals() {
+  if (!petals) return;
+
   petals.classList.add("active");
   petals.textContent = "";
 
@@ -52,7 +56,7 @@ function spawnPetals() {
 }
 
 function initReveal() {
-  const elements = document.querySelectorAll(".reveal");
+  const elements = document.querySelectorAll(".reveal:not(.visible)");
 
   if (!("IntersectionObserver" in window)) {
     elements.forEach((element) => element.classList.add("visible"));
@@ -84,17 +88,70 @@ function updateCountdown() {
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
 
-  countdownTargets.days.textContent = String(days).padStart(2, "0");
-  countdownTargets.hours.textContent = String(hours).padStart(2, "0");
-  countdownTargets.minutes.textContent = String(minutes).padStart(2, "0");
-  countdownTargets.seconds.textContent = String(seconds).padStart(2, "0");
+  setCountdownValue("days", days);
+  setCountdownValue("hours", hours);
+  setCountdownValue("minutes", minutes);
+  setCountdownValue("seconds", seconds);
+}
+
+function setCountdownValue(name, value) {
+  const target = countdownTargets[name];
+  if (!target) return;
+  target.textContent = String(value).padStart(2, "0");
 }
 
 function buildCalendarLink() {
+  if (!calendarLink) return;
+
   const params = new URLSearchParams({
     action: "TEMPLATE",
     text: "Gizem & Osman Düğün Töreni",
     dates: "20260801T170000Z/20260801T210000Z",
     details:
       "Gizem ve Osman'ın düğün töreni. Tarih: 01 Ağustos 2026 Cumartesi, Saat: 20:00.",
-    location:
+    location: "Pelops Wedding",
+  });
+
+  calendarLink.href = `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+async function shareInvitation() {
+  const shareData = {
+    title: "Gizem & Osman Düğün Davetiyesi",
+    text: "Gizem ve Osman'ın düğün davetiyesi: 01 Ağustos 2026, saat 20:00.",
+    url: window.location.href,
+  };
+
+  if (navigator.share) {
+    await navigator.share(shareData);
+    return;
+  }
+
+  await navigator.clipboard.writeText(window.location.href);
+  shareButton.querySelector("span").textContent = "Bağlantı Kopyalandı";
+  window.setTimeout(() => {
+    shareButton.querySelector("span").textContent = "Davetiyeyi Paylaş";
+  }, 2200);
+}
+
+cover?.addEventListener("click", openInvitation);
+openButton?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  openInvitation();
+});
+
+cover?.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  event.preventDefault();
+  openInvitation();
+});
+
+shareButton?.addEventListener("click", () => {
+  shareInvitation().catch(() => {
+    shareButton.querySelector("span").textContent = "Paylaşım Açılamadı";
+  });
+});
+
+buildCalendarLink();
+updateCountdown();
+window.setInterval(updateCountdown, 1000);
