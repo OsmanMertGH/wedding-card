@@ -441,28 +441,23 @@
             <div class="score-board-head">
               <div>
                 <p data-i18n="score.kicker">Bu cihazdaki</p>
-                <h3 id="scoreboard-title" data-i18n="score.title">İlk 5 Skor</h3>
+                <h3 id="scoreboard-title" data-i18n="score.title">Skor Kaydı</h3>
               </div>
               <span data-i18n="score.storage">Tarayıcıda saklanır</span>
             </div>
 
-            <ol id="scoreList" class="score-list" aria-live="polite"></ol>
-
-            <form class="score-form" id="scoreForm" hidden>
-              <label for="scoreName" data-i18n="score.nameLabel">Skor için adınızı yazın</label>
-              <div class="score-form-row">
-                <input
-                  id="scoreName"
-                  maxlength="18"
-                  autocomplete="name"
-                  placeholder="Adınız"
-                  data-i18n-placeholder="score.placeholder"
-                />
-                <button type="submit" data-i18n="score.save">Kaydet</button>
+            <div class="score-stats" aria-live="polite">
+              <div>
+                <span data-i18n="score.lastLabel">Son Skor</span>
+                <strong id="lastScore">0</strong>
               </div>
-            </form>
+              <div>
+                <span data-i18n="score.bestLabel">Rekor</span>
+                <strong id="bestScore">0</strong>
+              </div>
+            </div>
 
-            <p class="score-notice" id="scoreNotice">Henüz skor yok. İlk rekor sizden gelsin.</p>
+            <p class="score-notice" id="scoreNotice">Rekoru geçersen otomatik güncellenir.</p>
           </div>
         </div>
       </section>
