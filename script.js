@@ -3,7 +3,6 @@ const weddingDate = new Date("2026-08-01T20:00:00+03:00");
 const cover = document.querySelector("#cover");
 const content = document.querySelector("#content");
 const openButton = document.querySelector("#openInvite");
-const petals = document.querySelector("#petals");
 const calendarLink = document.querySelector("#calendarLink");
 const shareButton = document.querySelector("#shareInvite");
 
@@ -19,40 +18,13 @@ function openInvitation() {
 
   cover.classList.add("open");
   document.body.classList.remove("is-locked");
-  spawnPetals();
 
   window.setTimeout(() => {
     cover.style.display = "none";
     content?.focus({ preventScroll: true });
     content?.scrollIntoView({ behavior: "smooth", block: "start" });
     initReveal();
-  }, 900);
-}
-
-function spawnPetals() {
-  if (!petals) return;
-
-  petals.classList.add("active");
-  petals.textContent = "";
-
-  for (let index = 0; index < 28; index += 1) {
-    const petal = document.createElement("span");
-    const size = 8 + Math.random() * 10;
-
-    petal.className = "petal";
-    petal.style.left = `${Math.random() * 100}vw`;
-    petal.style.width = `${size}px`;
-    petal.style.height = `${size}px`;
-    petal.style.opacity = `${0.15 + Math.random() * 0.35}`;
-    petal.style.animationDuration = `${4 + Math.random() * 5}s`;
-    petal.style.animationDelay = `${Math.random() * 4}s`;
-    petals.appendChild(petal);
-  }
-
-  window.setTimeout(() => {
-    petals.classList.remove("active");
-    petals.textContent = "";
-  }, 12000);
+  }, 1450);
 }
 
 function initReveal() {
@@ -71,11 +43,11 @@ function initReveal() {
         observer.unobserve(entry.target);
       });
     },
-    { threshold: 0.12 },
+    { threshold: 0.14 },
   );
 
   elements.forEach((element, index) => {
-    element.style.transitionDelay = `${index * 0.04}s`;
+    element.style.transitionDelay = `${index * 0.045}s`;
     observer.observe(element);
   });
 }
@@ -116,6 +88,9 @@ function buildCalendarLink() {
 }
 
 async function shareInvitation() {
+  if (!shareButton) return;
+
+  const label = shareButton.querySelector("span");
   const shareData = {
     title: "Gizem & Osman Düğün Davetiyesi",
     text: "Gizem ve Osman'ın düğün davetiyesi: 01 Ağustos 2026, saat 20:00.",
@@ -128,9 +103,9 @@ async function shareInvitation() {
   }
 
   await navigator.clipboard.writeText(window.location.href);
-  shareButton.querySelector("span").textContent = "Bağlantı Kopyalandı";
+  label.textContent = "Bağlantı Kopyalandı";
   window.setTimeout(() => {
-    shareButton.querySelector("span").textContent = "Davetiyeyi Paylaş";
+    label.textContent = "Davetiyeyi Paylaş";
   }, 2200);
 }
 
@@ -148,7 +123,11 @@ cover?.addEventListener("keydown", (event) => {
 
 shareButton?.addEventListener("click", () => {
   shareInvitation().catch(() => {
-    shareButton.querySelector("span").textContent = "Paylaşım Açılamadı";
+    const label = shareButton.querySelector("span");
+    label.textContent = "Paylaşım Açılamadı";
+    window.setTimeout(() => {
+      label.textContent = "Davetiyeyi Paylaş";
+    }, 2200);
   });
 });
 
