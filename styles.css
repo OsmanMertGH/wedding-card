@@ -845,6 +845,134 @@ svg {
   line-height: 0.9;
 }
 
+.family-grid {
+  width: min(840px, 100%);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 38px;
+}
+
+.family-card,
+.rsvp-card {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 18px 50px rgba(37, 33, 28, 0.06);
+}
+
+.family-card {
+  display: grid;
+  justify-items: center;
+  padding: 28px 22px;
+}
+
+.family-card h3,
+.rsvp-card h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.family-card p {
+  margin: 10px 0 24px;
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.family-card dl {
+  width: 100%;
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.family-card dl div {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.family-card dt {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.family-card dd {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.rsvp-card {
+  width: min(840px, 100%);
+  display: grid;
+  justify-items: center;
+  margin-top: 14px;
+  padding: 30px 24px;
+}
+
+.rsvp-card h3 {
+  color: var(--seal-red);
+}
+
+.rsvp-card p {
+  max-width: 670px;
+  margin: 16px auto 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.phone-list {
+  width: min(640px, 100%);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.phone-list a {
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+  min-height: 72px;
+  padding: 14px 12px;
+  border: 1px solid rgba(179, 35, 47, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 250, 250, 0.76);
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.phone-list a:hover {
+  transform: translateY(-2px);
+  border-color: rgba(179, 35, 47, 0.34);
+  box-shadow: 0 18px 42px rgba(108, 17, 27, 0.1);
+}
+
+.phone-list span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.phone-list strong {
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
 .action-row {
   width: min(760px, 100%);
   display: grid;
@@ -950,6 +1078,11 @@ svg {
 
   .countdown-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .family-grid,
+  .phone-list {
+    grid-template-columns: 1fr;
   }
 
   .action-row {
