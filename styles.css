@@ -1205,6 +1205,273 @@ svg {
   box-shadow: 0 24px 64px rgba(37, 33, 28, 0.1);
 }
 
+.game-copy {
+  max-width: 620px;
+  margin: 20px auto 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+
+.wedding-game {
+  width: min(780px, 100%);
+  margin-top: 30px;
+  padding: 16px;
+  border: 1px solid rgba(185, 149, 85, 0.18);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 253, 249, 0.62)),
+    rgba(255, 255, 255, 0.72);
+  box-shadow: 0 22px 64px rgba(37, 33, 28, 0.08);
+}
+
+.game-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 4px 12px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.game-topline strong {
+  color: var(--seal-red);
+  font-size: 1rem;
+}
+
+.game-stage {
+  position: relative;
+  height: 210px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(185, 149, 85, 0.12), transparent 24%),
+    radial-gradient(circle at 82% 18%, rgba(123, 131, 113, 0.12), transparent 24%),
+    linear-gradient(180deg, #fffdf9 0%, #f8f2e8 100%);
+  cursor: pointer;
+  user-select: none;
+}
+
+.game-cloud {
+  position: absolute;
+  width: 86px;
+  height: 26px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow:
+    20px -8px 0 rgba(255, 255, 255, 0.72),
+    42px 2px 0 rgba(255, 255, 255, 0.66);
+  opacity: 0.82;
+  animation: gameCloud 12s ease-in-out infinite alternate;
+}
+
+.cloud-one {
+  left: 9%;
+  top: 34px;
+}
+
+.cloud-two {
+  right: 18%;
+  top: 58px;
+  transform: scale(0.74);
+  animation-delay: -4s;
+}
+
+@keyframes gameCloud {
+  to {
+    translate: 26px -8px;
+  }
+}
+
+.game-ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 34px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(185, 149, 85, 0.42), transparent);
+}
+
+.game-runner {
+  position: absolute;
+  left: 52px;
+  bottom: 36px;
+  width: 130px;
+  height: 82px;
+  z-index: 4;
+  transition: transform 0.42s cubic-bezier(0.25, 0.9, 0.3, 1.18);
+}
+
+.game-runner.is-jumping {
+  transform: translateY(-78px);
+}
+
+.runner-head {
+  position: absolute;
+  top: 4px;
+  width: 58px;
+  height: 58px;
+  border: 3px solid rgba(255, 253, 249, 0.96);
+  border-radius: 999px;
+  background-image: url("assets/cover-cartoon.png");
+  background-repeat: no-repeat;
+  background-size: 260px auto;
+  box-shadow: 0 12px 28px rgba(37, 33, 28, 0.2);
+}
+
+.runner-groom {
+  left: 10px;
+  background-position: -76px -44px;
+  transform: rotate(-5deg);
+}
+
+.runner-bride {
+  left: 54px;
+  background-position: -132px -58px;
+  transform: rotate(6deg);
+}
+
+.runner-shadow {
+  position: absolute;
+  left: 28px;
+  right: 20px;
+  bottom: 4px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(37, 33, 28, 0.14);
+  filter: blur(2px);
+}
+
+.italy-obstacle {
+  position: absolute;
+  left: 0;
+  bottom: 36px;
+  z-index: 3;
+  display: grid;
+  justify-items: center;
+  width: 78px;
+  height: 82px;
+  transform: translateX(900px);
+  will-change: transform;
+}
+
+.italy-obstacle::after {
+  content: attr(data-place);
+  position: absolute;
+  left: 50%;
+  bottom: -22px;
+  color: var(--muted);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}
+
+.italy-shape,
+.italy-shape::before,
+.italy-shape::after {
+  position: absolute;
+  display: block;
+  content: "";
+}
+
+.pisa .italy-shape {
+  bottom: 0;
+  width: 28px;
+  height: 66px;
+  border: 1px solid rgba(185, 149, 85, 0.5);
+  border-radius: 7px 7px 4px 4px;
+  background:
+    repeating-linear-gradient(180deg, #fff8eb 0 8px, #dfc896 8px 11px),
+    linear-gradient(180deg, #fffdf8, #eadcc0);
+  box-shadow: 0 12px 18px rgba(37, 33, 28, 0.09);
+  transform: rotate(-8deg);
+}
+
+.colosseum .italy-shape {
+  bottom: 4px;
+  width: 64px;
+  height: 42px;
+  border: 1px solid rgba(185, 149, 85, 0.44);
+  border-radius: 36px 36px 7px 7px;
+  background:
+    radial-gradient(ellipse at 18% 72%, transparent 0 7px, rgba(185, 149, 85, 0.38) 8px 9px, transparent 10px),
+    radial-gradient(ellipse at 50% 72%, transparent 0 7px, rgba(185, 149, 85, 0.38) 8px 9px, transparent 10px),
+    radial-gradient(ellipse at 82% 72%, transparent 0 7px, rgba(185, 149, 85, 0.38) 8px 9px, transparent 10px),
+    linear-gradient(180deg, #fff8eb, #e8d4aa);
+  box-shadow: 0 12px 18px rgba(37, 33, 28, 0.09);
+}
+
+.gondola .italy-shape {
+  bottom: 6px;
+  width: 68px;
+  height: 22px;
+  border-radius: 4px 4px 28px 28px;
+  background: linear-gradient(180deg, #332219, #15110e);
+  box-shadow: 0 12px 18px rgba(37, 33, 28, 0.12);
+}
+
+.gondola .italy-shape::before {
+  right: 3px;
+  top: -22px;
+  width: 24px;
+  height: 32px;
+  border-right: 3px solid #15110e;
+  border-radius: 0 24px 0 0;
+}
+
+.duomo .italy-shape {
+  bottom: 2px;
+  width: 58px;
+  height: 52px;
+  border: 1px solid rgba(185, 149, 85, 0.44);
+  border-radius: 26px 26px 7px 7px;
+  background:
+    linear-gradient(90deg, transparent 45%, rgba(185, 149, 85, 0.28) 46% 54%, transparent 55%),
+    linear-gradient(180deg, #fff8eb, #e9d6ae);
+}
+
+.duomo .italy-shape::before {
+  left: 50%;
+  top: -16px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50% 50% 0 0;
+  background: #d8bd7a;
+  transform: translateX(-50%);
+}
+
+.game-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  margin-top: 14px;
+  padding: 0 22px;
+  border: 1px solid rgba(185, 149, 85, 0.28);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  box-shadow: 0 14px 34px rgba(37, 33, 28, 0.12);
+  transition:
+    transform 0.22s ease,
+    background 0.22s ease;
+}
+
+.game-button:hover {
+  transform: translateY(-2px);
+  background: var(--seal-red-dark);
+}
+
 .detail-item span,
 .countdown-grid span {
   color: var(--gold);
@@ -1511,6 +1778,39 @@ svg {
     border-radius: 16px;
   }
 
+  .wedding-game {
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .game-topline {
+    align-items: flex-start;
+    flex-direction: column;
+    font-size: 0.68rem;
+  }
+
+  .game-stage {
+    height: 184px;
+    border-radius: 16px;
+  }
+
+  .game-runner {
+    left: 26px;
+    bottom: 34px;
+    transform: scale(0.88);
+    transform-origin: left bottom;
+  }
+
+  .game-runner.is-jumping {
+    transform: translateY(-70px) scale(0.88);
+  }
+
+  .italy-obstacle {
+    bottom: 34px;
+    transform: translateX(720px) scale(0.9);
+    transform-origin: center bottom;
+  }
+
   .countdown-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1565,6 +1865,18 @@ svg {
 
   .lead {
     line-height: 1.75;
+  }
+
+  .game-copy {
+    font-size: 0.92rem;
+  }
+
+  .game-stage {
+    height: 168px;
+  }
+
+  .game-button {
+    width: 100%;
   }
 
   .countdown-grid div {

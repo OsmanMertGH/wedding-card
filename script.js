@@ -7,6 +7,13 @@ const calendarLink = document.querySelector("#calendarLink");
 const shareButton = document.querySelector("#shareInvite");
 const scrollCue = document.querySelector("#scrollCue");
 const detailsSection = document.querySelector("#details-title");
+const weddingGame = document.querySelector("#weddingGame");
+const gameStage = document.querySelector("#gameStage");
+const gameRunner = document.querySelector("#gameRunner");
+const gameObstacle = document.querySelector("#gameObstacle");
+const gameButton = document.querySelector("#gameButton");
+const gameScore = document.querySelector("#gameScore");
+const gameStatus = document.querySelector("#gameStatus");
 
 const countdownTargets = {
   days: document.querySelector("#days"),
@@ -72,6 +79,113 @@ function setCountdownValue(name, value) {
   const target = countdownTargets[name];
   if (!target) return;
   target.textContent = String(value).padStart(2, "0");
+}
+
+const gameVariants = [
+  { className: "pisa", label: "Pisa" },
+  { className: "colosseum", label: "Roma" },
+  { className: "gondola", label: "Venedik" },
+  { className: "duomo", label: "Duomo" },
+];
+
+const gameState = {
+  animationFrame: 0,
+  lastTime: 0,
+  obstacleX: 0,
+  passedObstacle: false,
+  running: false,
+  jumping: false,
+  score: 0,
+  speed: 230,
+  variantIndex: 0,
+};
+
+function startGame() {
+  if (!weddingGame || !gameStage || !gameObstacle) return;
+
+  window.cancelAnimationFrame(gameState.animationFrame);
+  gameState.running = true;
+  gameState.jumping = false;
+  gameState.score = 0;
+  gameState.speed = 230;
+  gameState.lastTime = 0;
+  gameState.variantIndex = 0;
+
+  gameScore.textContent = "0";
+  gameStatus.textContent = "Zıpla!";
+  gameButton.textContent = "Zıpla";
+  weddingGame.classList.add("is-running");
+  gameRunner?.classList.remove("is-jumping");
+  resetObstacle();
+  gameState.animationFrame = window.requestAnimationFrame(updateGame);
+}
+
+function jumpGame() {
+  if (!gameState.running) {
+    startGame();
+    return;
+  }
+
+  if (gameState.jumping || !gameRunner) return;
+
+  gameState.jumping = true;
+  gameRunner.classList.add("is-jumping");
+
+  window.setTimeout(() => {
+    gameRunner.classList.remove("is-jumping");
+    gameState.jumping = false;
+  }, 620);
+}
+
+function updateGame(time) {
+  if (!gameState.running || !gameStage || !gameObstacle) return;
+
+  if (!gameState.lastTime) gameState.lastTime = time;
+  const delta = Math.min(32, time - gameState.lastTime) / 1000;
+  gameState.lastTime = time;
+  gameState.obstacleX -= gameState.speed * delta;
+  gameObstacle.style.transform = `translateX(${gameState.obstacleX}px)`;
+
+  const dangerStart = 58;
+  const dangerEnd = 132;
+
+  if (gameState.obstacleX < dangerEnd && gameState.obstacleX > dangerStart && !gameState.jumping) {
+    endGame();
+    return;
+  }
+
+  if (!gameState.passedObstacle && gameState.obstacleX < dangerStart) {
+    gameState.passedObstacle = true;
+    gameState.score += 1;
+    gameState.speed = Math.min(360, gameState.speed + 13);
+    gameScore.textContent = String(gameState.score);
+    gameStatus.textContent = gameState.score % 5 === 0 ? "İtalya turu!" : "Harika!";
+  }
+
+  if (gameState.obstacleX < -92) resetObstacle();
+
+  gameState.animationFrame = window.requestAnimationFrame(updateGame);
+}
+
+function resetObstacle() {
+  if (!gameStage || !gameObstacle) return;
+
+  const variant = gameVariants[gameState.variantIndex % gameVariants.length];
+  gameState.variantIndex += 1;
+  gameState.obstacleX = gameStage.clientWidth + 82;
+  gameState.passedObstacle = false;
+  gameObstacle.className = `italy-obstacle ${variant.className}`;
+  gameObstacle.dataset.place = variant.label;
+  gameObstacle.style.transform = `translateX(${gameState.obstacleX}px)`;
+}
+
+function endGame() {
+  gameState.running = false;
+  window.cancelAnimationFrame(gameState.animationFrame);
+  weddingGame?.classList.remove("is-running");
+  gameRunner?.classList.remove("is-jumping");
+  gameButton.textContent = "Tekrar Başlat";
+  gameStatus.textContent = `Skor ${gameState.score} - tekrar deneyin`;
 }
 
 function buildCalendarLink() {
@@ -152,6 +266,19 @@ window.addEventListener(
 );
 window.addEventListener("wheel", hideScrollCue, { passive: true });
 window.addEventListener("touchmove", hideScrollCue, { passive: true });
+
+gameButton?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  jumpGame();
+});
+
+gameStage?.addEventListener("click", jumpGame);
+
+weddingGame?.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  event.preventDefault();
+  jumpGame();
+});
 
 buildCalendarLink();
 updateCountdown();

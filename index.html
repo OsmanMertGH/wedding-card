@@ -251,6 +251,39 @@
         </div>
       </section>
 
+      <section class="mini-game section" aria-labelledby="game-title">
+        <div class="section-inner center-flow">
+          <p class="eyebrow reveal">Mini Oyun</p>
+          <h2 id="game-title" class="title-md reveal">Aşka doğru zıpla</h2>
+          <p class="game-copy reveal">
+            Ekrana dokunun veya boşluk tuşuna basın; İtalya engellerinin üzerinden birlikte zıplayın.
+          </p>
+
+          <div class="wedding-game reveal" id="weddingGame" tabindex="0" role="application" aria-label="Gelin ve damat zıplama oyunu">
+            <div class="game-topline">
+              <span>Skor <strong id="gameScore">0</strong></span>
+              <span id="gameStatus">Başlamak için dokunun</span>
+            </div>
+
+            <div class="game-stage" id="gameStage">
+              <div class="game-cloud cloud-one"></div>
+              <div class="game-cloud cloud-two"></div>
+              <div class="game-runner" id="gameRunner" aria-hidden="true">
+                <span class="runner-head runner-groom"></span>
+                <span class="runner-head runner-bride"></span>
+                <span class="runner-shadow"></span>
+              </div>
+              <div class="italy-obstacle pisa" id="gameObstacle" data-place="Pisa" aria-hidden="true">
+                <span class="italy-shape"></span>
+              </div>
+              <div class="game-ground"></div>
+            </div>
+
+            <button class="game-button" id="gameButton" type="button">Başlat / Zıpla</button>
+          </div>
+        </div>
+      </section>
+
       <section class="countdown section" aria-labelledby="countdown-title">
         <div class="section-inner center-flow">
           <p class="eyebrow reveal">Geri Sayım</p>
