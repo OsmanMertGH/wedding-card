@@ -85,25 +85,16 @@ function setCountdownValue(name, value) {
 const gameVariants = [
   { label: "Amalfi", src: "./assets/obstacles/amalfi_village.png" },
   { label: "Espresso", src: "./assets/obstacles/espresso_moka.png" },
-  { label: "Duomo", src: "./assets/obstacles/florence_duomo.png" },
   { label: "Gondol", src: "./assets/obstacles/gondola.png" },
-  { label: "Gondol", src: "./assets/obstacles/gondola_alt.png" },
   { label: "Milano", src: "./assets/obstacles/milan_duomo.png" },
   { label: "Miramare", src: "./assets/obstacles/miramare_castle.png" },
-  { label: "Pisa", src: "./assets/obstacles/pisa_tower.png" },
   { label: "Pizza", src: "./assets/obstacles/pizza.png" },
-  { label: "Pizza", src: "./assets/obstacles/pizza_alt.png" },
   { label: "Rialto", src: "./assets/obstacles/rialto_bridge.png" },
   { label: "Roma", src: "./assets/obstacles/roman_columns.png" },
-  { label: "Roma", src: "./assets/obstacles/roman_ruins.png" },
   { label: "Trevi", src: "./assets/obstacles/trevi_fountain.png" },
   { label: "Vespa", src: "./assets/obstacles/vespa.png" },
-  { label: "Vespa", src: "./assets/obstacles/vespa_alt.png" },
   { label: "Maske", src: "./assets/obstacles/venetian_mask.png" },
   { label: "Şarap", src: "./assets/obstacles/wine_icon.png" },
-  { label: "Toskana", src: "./assets/obstacles/wine_tuscany.png" },
-  { label: "Colosseum", src: "./assets/obstacles/colosseum.png" },
-  { label: "David", src: "./assets/obstacles/david_statue.png" },
 ];
 
 const gameState = {
@@ -124,14 +115,14 @@ function setupGamePreview() {
 
   gameState.running = false;
   gameState.score = 0;
-  gameState.variantIndex = 2;
+  gameState.variantIndex = 6;
   gameState.obstacleX = Math.max(230, gameStage.clientWidth - 150);
   gameScore.textContent = "0";
   gameStatus.textContent = "Dokun ve zıp de";
   gameButton.textContent = "Zıp De";
   gameObstacle.className = "italy-obstacle image-obstacle";
   gameObstacle.dataset.place = "Pisa";
-  gameObstacleImage.style.backgroundImage = 'url("./assets/obstacles/pisa_tower.png")';
+  gameObstacleImage.style.backgroundImage = 'url("./assets/obstacles/roman_columns.png")';
   gameObstacle.style.transform = `translateX(${gameState.obstacleX}px)`;
 }
 
