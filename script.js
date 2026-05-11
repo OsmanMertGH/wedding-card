@@ -24,7 +24,7 @@ function openInvitation() {
     content?.focus({ preventScroll: true });
     content?.scrollIntoView({ behavior: "smooth", block: "start" });
     initReveal();
-  }, 1450);
+  }, 2050);
 }
 
 function initReveal() {
