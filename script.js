@@ -442,8 +442,8 @@ function updateGame(time) {
   gameState.obstacleX -= gameState.speed * delta;
   gameObstacle.style.transform = `translateX(${gameState.obstacleX}px)`;
 
-  const dangerStart = 70;
-  const dangerEnd = 188;
+  const dangerStart = 68;
+  const dangerEnd = 164;
 
   if (gameState.obstacleX < dangerEnd && gameState.obstacleX > dangerStart && !gameState.jumping) {
     endGame();

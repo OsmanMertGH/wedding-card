@@ -1345,9 +1345,9 @@ svg {
 
 .game-runner {
   position: absolute;
-  left: 34px;
+  left: 58px;
   bottom: 38px;
-  width: 190px;
+  width: 138px;
   height: 138px;
   z-index: 4;
   transition: transform 0.42s cubic-bezier(0.25, 0.9, 0.3, 1.18);
@@ -1361,7 +1361,7 @@ svg {
   position: absolute;
   left: 50%;
   bottom: 4px;
-  width: 190px;
+  width: 138px;
   height: 134px;
   background-image: url("./assets/game-vespa-couple-transparent.png");
   background-repeat: no-repeat;
@@ -1828,7 +1828,7 @@ svg {
   }
 
   .game-runner {
-    left: 22px;
+    left: 42px;
     bottom: 38px;
     transform: scale(0.74);
     transform-origin: left bottom;
