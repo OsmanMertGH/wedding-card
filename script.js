@@ -98,24 +98,3 @@ function buildCalendarLink() {
     details:
       "Gizem ve Osman'ın düğün töreni. Tarih: 01 Ağustos 2026 Cumartesi, Saat: 20:00.",
     location:
-      "Pelops Wedding, Kızılcaşar, İsmail Gaspıralı Cd No:2, 06830 Gölbaşı/Ankara",
-  });
-
-  calendarLink.href = `https://calendar.google.com/calendar/render?${params.toString()}`;
-}
-
-cover.addEventListener("click", openInvitation);
-openButton.addEventListener("click", (event) => {
-  event.stopPropagation();
-  openInvitation();
-});
-
-cover.addEventListener("keydown", (event) => {
-  if (event.key !== "Enter" && event.key !== " ") return;
-  event.preventDefault();
-  openInvitation();
-});
-
-buildCalendarLink();
-updateCountdown();
-window.setInterval(updateCountdown, 1000);
