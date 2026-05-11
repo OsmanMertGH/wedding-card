@@ -1112,6 +1112,48 @@ svg {
   line-height: 1.85;
 }
 
+.scroll-cue {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  margin-top: 42px;
+  color: var(--muted);
+}
+
+.scroll-cue span {
+  position: relative;
+  width: 1px;
+  height: 42px;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.scroll-cue span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -16px;
+  width: 1px;
+  height: 18px;
+  background: var(--gold);
+  animation: scrollCueLine 1.6s ease-in-out infinite;
+}
+
+.scroll-cue p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+@keyframes scrollCueLine {
+  to {
+    transform: translateY(62px);
+  }
+}
+
 .detail-list {
   width: min(720px, 100%);
   display: grid;
