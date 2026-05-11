@@ -871,40 +871,55 @@ svg {
 .family-grid {
   width: min(840px, 100%);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  margin-top: 38px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 30px;
 }
 
 .family-card,
 .rsvp-card {
   border: 1px solid var(--line);
-  border-radius: 22px;
+  border-radius: 18px;
   background: rgba(255, 255, 255, 0.72);
   box-shadow: 0 18px 50px rgba(37, 33, 28, 0.06);
+}
+
+.families .title-md {
+  font-size: clamp(2.55rem, 6vw, 4.4rem);
 }
 
 .family-card {
   display: grid;
   justify-items: center;
-  padding: 28px 22px;
+  align-content: start;
+  padding: 22px 16px;
+  transition:
+    transform 0.24s ease,
+    border-color 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.family-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(185, 149, 85, 0.26);
+  box-shadow: 0 22px 56px rgba(37, 33, 28, 0.09);
 }
 
 .family-card h3,
 .rsvp-card h3 {
   margin: 0;
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.55rem, 3.7vw, 2.45rem);
   font-weight: 500;
-  line-height: 1;
+  line-height: 1.04;
 }
 
 .family-card p {
-  margin: 10px 0 24px;
+  margin: 8px 0 18px;
   color: var(--gold);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
@@ -919,28 +934,29 @@ svg {
   display: grid;
   justify-items: center;
   gap: 4px;
-  padding-top: 12px;
+  padding-top: 10px;
   border-top: 1px solid var(--line);
 }
 
 .family-card dt {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 700;
 }
 
 .family-card dd {
   margin: 0;
-  font-size: 1rem;
+  font-size: clamp(0.86rem, 2.6vw, 1rem);
   font-weight: 700;
+  line-height: 1.25;
 }
 
 .rsvp-card {
   width: min(840px, 100%);
   display: grid;
   justify-items: center;
-  margin-top: 14px;
-  padding: 30px 24px;
+  margin-top: 12px;
+  padding: 26px 20px;
 }
 
 .rsvp-card h3 {
@@ -956,9 +972,9 @@ svg {
 }
 
 .phone-list {
-  width: min(640px, 100%);
+  width: min(700px, 100%);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
   margin-top: 24px;
 }
@@ -967,7 +983,7 @@ svg {
   display: grid;
   gap: 4px;
   justify-items: center;
-  min-height: 72px;
+  min-height: 84px;
   padding: 14px 12px;
   border: 1px solid rgba(179, 35, 47, 0.18);
   border-radius: 16px;
@@ -992,8 +1008,17 @@ svg {
 
 .phone-list strong {
   color: var(--ink);
-  font-size: 1rem;
+  font-size: clamp(0.94rem, 2.8vw, 1.02rem);
   font-weight: 800;
+  line-height: 1.2;
+}
+
+.phone-list small {
+  color: var(--seal-red);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .action-row {
@@ -1103,14 +1128,16 @@ svg {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .family-grid,
-  .phone-list {
-    grid-template-columns: 1fr;
-  }
-
   .action-row {
     grid-template-columns: 1fr;
     width: min(420px, 100%);
+  }
+}
+
+@media (max-width: 560px) {
+  .family-grid,
+  .phone-list {
+    grid-template-columns: 1fr;
   }
 }
 
