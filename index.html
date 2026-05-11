@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Gizem ve Osman'ın 01 Ağustos 2026 tarihli düğün davetiyesi."
+    />
+    <meta property="og:title" content="Gizem & Osman Düğün Davetiyesi" />
+    <meta
+      property="og:description"
+      content="01 Ağustos 2026 Cumartesi, saat 20:00 - Pelops Wedding"
+    />
+    <meta property="og:image" content="assets/cover-cartoon.png" />
+    <meta name="theme-color" content="#0e0a06" />
+    <title>Gizem & Osman | Düğün Davetiyesi</title>
+    <link rel="preload" as="image" href="assets/cover-cartoon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <noscript>
+      <style>
+        body {
+          overflow: auto;
+        }
+
+        #cover {
+          position: relative;
+          min-height: 100svh;
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body class="is-locked">
+    <div class="petals" id="petals" aria-hidden="true"></div>
+
+    <section id="cover" class="cover" role="button" tabindex="0" aria-label="Davetiyeyi aç">
+      <div class="cover-image" aria-hidden="true"></div>
+      <div class="cover-shade" aria-hidden="true"></div>
+      <div class="cover-ornament" aria-hidden="true">
+        <svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice">
+          <rect x="34" y="34" width="732" height="832" />
+          <circle cx="400" cy="450" r="185" />
+          <circle cx="400" cy="450" r="215" />
+          <path d="M54 86c50-60 104-60 162 0M584 86c58-60 112-60 162 0M54 814c50 60 104 60 162 0M584 814c58 60 112 60 162 0" />
+        </svg>
+      </div>
+
+      <div class="cover-inner">
+        <div class="cover-line">
+          <span></span>
+          <em>Düğün Davetiyesi</em>
+          <span></span>
+        </div>
+        <h1 class="cover-names">
+          Gizem
+          <span>&</span>
+          Osman
+        </h1>
+        <p class="cover-date">01 Ağustos 2026 · Saat 20:00</p>
+        <button class="cover-btn" id="openInvite" type="button">
+          <span>Daveti Aç</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="cover-scroll-hint">
+        <svg width="14" height="20" viewBox="0 0 14 20" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="12" height="18" rx="6" />
+          <path d="M7 5v4" />
+        </svg>
+        <span>tıklayın</span>
+      </div>
+    </section>
+
+    <main id="content" class="content" tabindex="-1">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="hero-tag reveal">Evlilik törenine davetlisiniz</p>
+          <div class="hero-divider reveal" aria-hidden="true">
+            <span></span>
+            <i></i>
+            <span></span>
+          </div>
+          <h2 id="hero-title" class="hero-names reveal">
+            Gizem
+            <span>&</span>
+            Osman
+          </h2>
+          <div class="hero-sep reveal" aria-hidden="true">
+            <span></span>
+            <b>✦</b>
+            <span></span>
+          </div>
+          <p class="hero-message reveal">
+            Hayatımızın en güzel gününde bizimle olmanızdan mutluluk duyarız.
+          </p>
+        </div>
+      </section>
+
+      <section class="families" aria-labelledby="families-title">
+        <p class="section-title reveal" id="families-title">Aileler</p>
+        <div class="families-grid reveal">
+          <article class="family-card family-bride">
+            <p class="family-label">Gelin</p>
+            <h3 class="family-name">Gizem Yalçın</h3>
+            <div class="family-parents">
+              <strong>Annesi</strong>
+              Melahat Yalçın
+              <strong>Babası</strong>
+              Rıza Yalçın
+            </div>
+          </article>
+
+          <div class="family-and" aria-hidden="true">&</div>
+
+          <article class="family-card family-groom">
+            <p class="family-label">Damat</p>
+            <h3 class="family-name">Osman Mert</h3>
+            <div class="family-parents">
+              <strong>Annesi</strong>
+              Müjgan MERT
+              <strong>Babası</strong>
+              Niyazi MERT
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="datetime-section" aria-labelledby="datetime-title">
+        <div class="datetime-ornament" aria-hidden="true">
+          <span></span>
+          <i></i>
+          <span></span>
+        </div>
+        <p class="datetime-label reveal" id="datetime-title">Tarih ve Saat</p>
+        <div class="datetime-main reveal">
+          <div class="dt-block">
+            <strong>01</strong>
+            <span>Gün</span>
+          </div>
+          <b>·</b>
+          <div class="dt-block">
+            <strong>Ağustos</strong>
+            <span>Ay</span>
+          </div>
+          <b>·</b>
+          <div class="dt-block">
+            <strong>2026</strong>
+            <span>Yıl</span>
+          </div>
+          <b>·</b>
+          <div class="dt-block">
+            <strong>20:00</strong>
+            <span>Saat</span>
+          </div>
+        </div>
+        <p class="datetime-sub reveal">Cumartesi akşamı</p>
+      </section>
+
+      <section class="venue-section" aria-labelledby="venue-title">
+        <p class="section-title reveal" id="venue-title">Mekan</p>
+        <article class="venue-card reveal">
+          <div class="venue-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
+              <path d="M9 22V12h6v10" />
+            </svg>
+          </div>
+          <h3>Pelops Wedding</h3>
+          <p>
+            Kızılcaşar, İsmail Gaspıralı Cd No:2<br />
+            06830 Gölbaşı / Ankara
+          </p>
+          <div class="venue-actions">
+            <a
+              class="action-btn primary"
+              href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x14d34095337b6e53:0xe7c6bcc06a2518d0?sa=X&ved=1t:8290&ictx=111"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s7-5.1 7-12a7 7 0 1 0-14 0c0 6.9 7 12 7 12Z" />
+                <circle cx="12" cy="9" r="2.5" />
+              </svg>
+              <span>Haritada Aç</span>
+            </a>
+            <a class="action-btn" id="calendarLink" href="#" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 2v4m8-4v4M4 9.5h16M5.5 5.5h13A1.5 1.5 0 0 1 20 7v12a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19V7a1.5 1.5 0 0 1 1.5-1.5Z" />
+              </svg>
+              <span>Takvime Ekle</span>
+            </a>
+          </div>
+        </article>
+      </section>
+
+      <section class="countdown-section" aria-labelledby="countdown-title">
+        <p class="countdown-label reveal" id="countdown-title">Düğüne Kalan Süre</p>
+        <div class="countdown-grid reveal">
+          <div class="cd-block">
+            <strong id="days">00</strong>
+            <span>Gün</span>
+          </div>
+          <b>·</b>
+          <div class="cd-block">
+            <strong id="hours">00</strong>
+            <span>Saat</span>
+          </div>
+          <b>·</b>
+          <div class="cd-block">
+            <strong id="minutes">00</strong>
+            <span>Dakika</span>
+          </div>
+          <b>·</b>
+          <div class="cd-block">
+            <strong id="seconds">00</strong>
+            <span>Saniye</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span></span>
+        <h2>Gizem & Osman</h2>
+        <p>Varlığınız, bu geceyi daha da özel kılacak.</p>
+        <span></span>
+        <small>01 · VIII · MMXXVI</small>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
