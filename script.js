@@ -1,4 +1,4 @@
-const weddingDate = new Date("2026-08-01T20:00:00+03:00");
+const weddingDate = new Date("2026-08-01T19:00:00+03:00");
 
 const cover = document.querySelector("#cover");
 const content = document.querySelector("#content");
@@ -80,7 +80,7 @@ function buildCalendarLink() {
     text: "Gizem & Osman Düğün Töreni",
     dates: "20260801T170000Z/20260801T210000Z",
     details:
-      "Gizem ve Osman'ın düğün töreni. Tarih: 01 Ağustos 2026 Cumartesi, Saat: 20:00.",
+      "Gizem ve Osman'ın düğün töreni. Tarih: 01 Ağustos 2026 Cumartesi, Saat: 19:00.",
     location: "Pelops Wedding",
   });
 
@@ -93,7 +93,7 @@ async function shareInvitation() {
   const label = shareButton.querySelector("span");
   const shareData = {
     title: "Gizem & Osman Düğün Davetiyesi",
-    text: "Gizem ve Osman'ın düğün davetiyesi: 01 Ağustos 2026, saat 20:00.",
+    text: "Gizem ve Osman'ın düğün davetiyesi: 01 Ağustos 2026, saat 19:00.",
     url: window.location.href,
   };
 
