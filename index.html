@@ -67,6 +67,38 @@
           linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(251, 250, 247, 0.84));
       }
 
+      .language-switch {
+        position: absolute;
+        top: max(18px, env(safe-area-inset-top));
+        right: max(18px, env(safe-area-inset-right));
+        z-index: 7;
+        display: flex;
+        gap: 5px;
+        padding: 5px;
+        border: 1px solid rgba(37, 33, 28, 0.12);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: 0 16px 42px rgba(37, 33, 28, 0.08);
+        cursor: default;
+      }
+
+      .language-switch button {
+        min-width: 42px;
+        height: 32px;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: #777068;
+        cursor: pointer;
+        font: 700 0.72rem/1 Manrope, "Segoe UI", Arial, sans-serif;
+        letter-spacing: 0.08em;
+      }
+
+      .language-switch button.is-active {
+        background: #171512;
+        color: #fbfaf7;
+      }
+
       .cover-content {
         position: relative;
         z-index: 3;
@@ -103,7 +135,7 @@
         line-height: 1.6;
       }
     </style>
-    <link rel="stylesheet" href="styles.css?v=game-bg-3" />
+    <link rel="stylesheet" href="styles.css?v=i18n-1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -118,10 +150,10 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@300;400;500;600;700&display=swap"
       />
     </noscript>
-    <script src="script.js?v=game-bg-3" defer></script>
+    <script src="script.js?v=i18n-1" defer></script>
   </head>
   <body class="is-locked">
-    <section id="cover" class="cover" role="button" tabindex="0" aria-label="Davetiyeyi aç">
+    <section id="cover" class="cover" role="button" tabindex="0" aria-label="Davetiyeyi aç" data-i18n-aria="cover.aria">
       <div class="cover-photo" aria-hidden="true"></div>
       <div class="cover-aura" aria-hidden="true">
         <span></span>
@@ -139,18 +171,24 @@
         <span></span>
       </div>
 
+      <nav class="language-switch" aria-label="Dil seçimi" data-i18n-aria="language.aria">
+        <button class="is-active" type="button" data-language="tr" aria-pressed="true">TR</button>
+        <button type="button" data-language="en" aria-pressed="false">EN</button>
+        <button type="button" data-language="it" aria-pressed="false">IT</button>
+      </nav>
+
       <div class="cover-content">
         <h1>
           Gizem
           <span class="cover-heart" aria-label="kalp">♥</span>
           Osman
         </h1>
-        <p class="cover-date">01 Ağustos 2026 · 19:00</p>
+        <p class="cover-date" data-i18n="cover.date">01 Ağustos 2026 · 19:00</p>
 
         <div class="invite-animation" aria-hidden="true">
           <div class="envelope">
             <div class="letter">
-              <small>Düğün Davetiyesi</small>
+              <small data-i18n="cover.letter">Düğün Davetiyesi</small>
               <strong>G · O</strong>
               <i></i>
             </div>
@@ -164,7 +202,7 @@
         </div>
 
         <button id="openInvite" class="primary-cta" type="button">
-          <span>Daveti Aç</span>
+          <span data-i18n="cover.open">Daveti Aç</span>
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M5 12h14M13 6l6 6-6 6" />
           </svg>
@@ -173,7 +211,7 @@
 
       <div class="tap-hint" aria-hidden="true">
         <span></span>
-        <p>Tıklayın</p>
+        <p data-i18n="cover.tap">Tıklayın</p>
       </div>
     </section>
 
@@ -213,18 +251,18 @@
 
       <section class="opening section">
         <div class="section-inner center-flow">
-          <p class="eyebrow reveal">Düğünümüze Davetlisiniz</p>
+          <p class="eyebrow reveal" data-i18n="opening.eyebrow">Düğünümüze Davetlisiniz</p>
           <h2 class="title-xl reveal">
-            Bu özel günümüze
-            <span>sizleri de bekleriz</span>
+            <span class="title-line" data-i18n="opening.titleTop">Bu özel günümüze</span>
+            <span class="accent-line" data-i18n="opening.titleBottom">sizleri de bekleriz</span>
           </h2>
-          <p class="lead reveal">
+          <p class="lead reveal" data-i18n="opening.lead">
             Hayatımızın en güzel başlangıcını sevdiklerimizle paylaşmak istiyoruz.
             Mutluluğumuza ortak olmanız bize büyük sevinç verecektir.
           </p>
-          <button class="scroll-cue reveal" id="scrollCue" type="button" aria-label="Davet detaylarına kaydır">
+          <button class="scroll-cue reveal" id="scrollCue" type="button" aria-label="Davet detaylarına kaydır" data-i18n-aria="opening.scrollAria">
             <span></span>
-            <p>Aşağı kaydırın</p>
+            <p data-i18n="opening.scroll">Aşağı kaydırın</p>
           </button>
         </div>
       </section>
@@ -232,35 +270,155 @@
       <section class="details section" aria-labelledby="details-title">
         <div class="section-inner center-flow">
           <p class="eyebrow reveal">Gizem & Osman</p>
-          <h2 id="details-title" class="title-md reveal">Davet Detayları</h2>
+          <h2 id="details-title" class="title-md reveal" data-i18n="details.title">Davet Detayları</h2>
 
           <div class="detail-list reveal">
             <article class="detail-item">
-              <span>Tarih</span>
-              <strong>01 Ağustos 2026 Cumartesi</strong>
+              <span data-i18n="details.dateLabel">Tarih</span>
+              <strong data-i18n="details.dateValue">01 Ağustos 2026 Cumartesi</strong>
             </article>
             <article class="detail-item">
-              <span>Saat</span>
-              <strong>19:00</strong>
+              <span data-i18n="details.timeLabel">Saat</span>
+              <strong data-i18n="details.timeValue">19:00</strong>
             </article>
             <article class="detail-item">
-              <span>Mekan</span>
+              <span data-i18n="details.venueLabel">Mekan</span>
               <strong>Pelops Wedding</strong>
             </article>
           </div>
         </div>
       </section>
 
+      <section class="countdown section" aria-labelledby="countdown-title">
+        <div class="section-inner center-flow">
+          <p class="eyebrow reveal" data-i18n="countdown.eyebrow">Geri Sayım</p>
+          <h2 id="countdown-title" class="title-md reveal" data-i18n="countdown.title">Büyük güne kalan süre</h2>
+
+          <div class="countdown-grid reveal" aria-live="polite">
+            <div>
+              <strong id="days">00</strong>
+              <span data-i18n="countdown.days">Gün</span>
+            </div>
+            <div>
+              <strong id="hours">00</strong>
+              <span data-i18n="countdown.hours">Saat</span>
+            </div>
+            <div>
+              <strong id="minutes">00</strong>
+              <span data-i18n="countdown.minutes">Dakika</span>
+            </div>
+            <div>
+              <strong id="seconds">00</strong>
+              <span data-i18n="countdown.seconds">Saniye</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="families section" aria-labelledby="families-title">
+        <div class="section-inner center-flow">
+          <p class="eyebrow reveal" data-i18n="families.eyebrow">Ailelerimiz</p>
+          <h2 id="families-title" class="title-md reveal" data-i18n="families.title">Bu mutlu günümüzde</h2>
+
+          <div class="family-grid reveal">
+            <article class="family-card">
+              <h3>Osman Mert</h3>
+              <p data-i18n="families.family">Ailesi</p>
+              <dl>
+                <div>
+                  <dt data-i18n="families.father">Babası</dt>
+                  <dd>Niyazi MERT</dd>
+                </div>
+                <div>
+                  <dt data-i18n="families.mother">Annesi</dt>
+                  <dd>Müjgan MERT</dd>
+                </div>
+              </dl>
+            </article>
+
+            <article class="family-card">
+              <h3>Gizem Damla Yalçın</h3>
+              <p data-i18n="families.family">Ailesi</p>
+              <dl>
+                <div>
+                  <dt data-i18n="families.father">Babası</dt>
+                  <dd>Rıza Yalçın</dd>
+                </div>
+                <div>
+                  <dt data-i18n="families.mother">Annesi</dt>
+                  <dd>Melahat Yalçın</dd>
+                </div>
+              </dl>
+            </article>
+          </div>
+
+          <div class="rsvp-card reveal">
+            <h3 data-i18n="rsvp.title">Katılım Bilgisi</h3>
+            <p data-i18n="rsvp.copy">
+              Sizleri aramızda görmekten büyük mutluluk duyarız. Yer planlamasını en güzel
+              şekilde yapabilmemiz için katılım durumunuzu ailelerimize bildirmenizi rica ederiz.
+            </p>
+            <div class="phone-list">
+              <a href="tel:+905052121400" aria-label="Niyazi MERT telefonunu ara" data-i18n-aria="rsvp.phoneNiyaziAria">
+                <span>Niyazi MERT</span>
+                <strong>0505 212 14 00</strong>
+                <small data-i18n="rsvp.call">Aramak için dokunun</small>
+              </a>
+              <a href="tel:+905365266658" aria-label="Rıza Yalçın telefonunu ara" data-i18n-aria="rsvp.phoneRizaAria">
+                <span>Rıza Yalçın</span>
+                <strong>0536 526 66 58</strong>
+                <small data-i18n="rsvp.call">Aramak için dokunun</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="actions section">
+        <div class="section-inner center-flow">
+          <p class="eyebrow reveal" data-i18n="actions.eyebrow">Not Alın</p>
+          <h2 class="title-md reveal" data-i18n="actions.title">Sizi aramızda görmek isteriz</h2>
+
+          <div class="action-row reveal">
+            <a id="calendarLink" class="action-link" href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 3v3M17 3v3M4 9h16M5 5h14v15H5z" />
+              </svg>
+              <span data-i18n="actions.calendar">Takvime Ekle</span>
+            </a>
+            <a
+              class="action-link"
+              href="https://www.google.com/maps/search/?api=1&query=Pelops%20Wedding"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11z" />
+                <circle cx="12" cy="10" r="2.5" />
+              </svg>
+              <span data-i18n="actions.map">Konumu Aç</span>
+            </a>
+            <button id="shareInvite" class="action-link" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 8a3 3 0 1 0-2.83-4H15a3 3 0 0 0 .17 1L8.9 8.6a3 3 0 1 0 0 6.8l6.27 3.58A3 3 0 1 0 16 17l-6.27-3.58a3 3 0 0 0 0-2.84L16 7a3 3 0 0 0 2 .99z" />
+              </svg>
+              <span data-i18n="actions.share">Davetiyeyi Paylaş</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
       <section class="mini-game section" aria-labelledby="game-title">
         <div class="section-inner center-flow">
-          <p class="eyebrow reveal">Mini Oyun</p>
-          <p class="game-copy reveal">
-            Ekrana dokunun veya boşluk tuşuna basın.
+          <p class="eyebrow reveal" data-i18n="game.eyebrow">Mini Oyun</p>
+          <h2 id="game-title" class="title-md reveal" data-i18n="game.title">Aşka doğru zıpla</h2>
+          <p class="game-copy reveal" data-i18n="game.copy">
+            Ekrana dokunun veya boşluk tuşuna basın; İtalya engellerinin üzerinden birlikte zıplayın.
           </p>
 
-          <div class="wedding-game reveal" id="weddingGame" tabindex="0" role="application" aria-label="Gelin ve damat zıplama oyunu">
+          <div class="wedding-game reveal" id="weddingGame" tabindex="0" role="application" aria-label="Gelin ve damat zıplama oyunu" data-i18n-aria="game.aria">
             <div class="game-topline">
-              <span>Skor <strong id="gameScore">0</strong></span>
+              <span><span data-i18n="game.score">Skor</span> <strong id="gameScore">0</strong></span>
               <span id="gameStatus">Başlamak için dokunun</span>
             </div>
 
@@ -281,129 +439,10 @@
           </div>
         </div>
       </section>
-
-      <section class="countdown section" aria-labelledby="countdown-title">
-        <div class="section-inner center-flow">
-          <p class="eyebrow reveal">Geri Sayım</p>
-          <h2 id="countdown-title" class="title-md reveal">Büyük güne kalan süre</h2>
-
-          <div class="countdown-grid reveal" aria-live="polite">
-            <div>
-              <strong id="days">00</strong>
-              <span>Gün</span>
-            </div>
-            <div>
-              <strong id="hours">00</strong>
-              <span>Saat</span>
-            </div>
-            <div>
-              <strong id="minutes">00</strong>
-              <span>Dakika</span>
-            </div>
-            <div>
-              <strong id="seconds">00</strong>
-              <span>Saniye</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="families section" aria-labelledby="families-title">
-        <div class="section-inner center-flow">
-          <p class="eyebrow reveal">Ailelerimiz</p>
-          <h2 id="families-title" class="title-md reveal">Bu mutlu günümüzde</h2>
-
-          <div class="family-grid reveal">
-            <article class="family-card">
-              <h3>Osman Mert</h3>
-              <p>Ailesi</p>
-              <dl>
-                <div>
-                  <dt>Babası</dt>
-                  <dd>Niyazi MERT</dd>
-                </div>
-                <div>
-                  <dt>Annesi</dt>
-                  <dd>Müjgan MERT</dd>
-                </div>
-              </dl>
-            </article>
-
-            <article class="family-card">
-              <h3>Gizem Damla Yalçın</h3>
-              <p>Ailesi</p>
-              <dl>
-                <div>
-                  <dt>Babası</dt>
-                  <dd>Rıza Yalçın</dd>
-                </div>
-                <div>
-                  <dt>Annesi</dt>
-                  <dd>Melahat Yalçın</dd>
-                </div>
-              </dl>
-            </article>
-          </div>
-
-          <div class="rsvp-card reveal">
-            <h3>Katılım Bilgisi</h3>
-            <p>
-              Sizleri aramızda görmekten büyük mutluluk duyarız. Yer planlamasını en güzel
-              şekilde yapabilmemiz için katılım durumunuzu ailelerimize bildirmenizi rica ederiz.
-            </p>
-            <div class="phone-list">
-              <a href="tel:+905052121400" aria-label="Niyazi MERT telefonunu ara">
-                <span>Niyazi MERT</span>
-                <strong>0505 212 14 00</strong>
-                <small>Aramak için dokunun</small>
-              </a>
-              <a href="tel:+905365266658" aria-label="Rıza Yalçın telefonunu ara">
-                <span>Rıza Yalçın</span>
-                <strong>0536 526 66 58</strong>
-                <small>Aramak için dokunun</small>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="actions section">
-        <div class="section-inner center-flow">
-          <p class="eyebrow reveal">Not Alın</p>
-          <h2 class="title-md reveal">Sizi aramızda görmek isteriz</h2>
-
-          <div class="action-row reveal">
-            <a id="calendarLink" class="action-link" href="#" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M7 3v3M17 3v3M4 9h16M5 5h14v15H5z" />
-              </svg>
-              <span>Takvime Ekle</span>
-            </a>
-            <a
-              class="action-link"
-              href="https://www.google.com/maps/search/?api=1&query=Pelops%20Wedding"
-              target="_blank"
-              rel="noopener"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11z" />
-                <circle cx="12" cy="10" r="2.5" />
-              </svg>
-              <span>Konumu Aç</span>
-            </a>
-            <button id="shareInvite" class="action-link" type="button">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M18 8a3 3 0 1 0-2.83-4H15a3 3 0 0 0 .17 1L8.9 8.6a3 3 0 1 0 0 6.8l6.27 3.58A3 3 0 1 0 16 17l-6.27-3.58a3 3 0 0 0 0-2.84L16 7a3 3 0 0 0 2 .99z" />
-              </svg>
-              <span>Davetiyeyi Paylaş</span>
-            </button>
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer class="footer">
-      <p>Gizem & Osman · 01 Ağustos 2026</p>
+      <p data-i18n="footer.text">Gizem & Osman · 01 Ağustos 2026</p>
     </footer>
   </body>
 </html>
