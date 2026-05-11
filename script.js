@@ -11,6 +11,7 @@ const weddingGame = document.querySelector("#weddingGame");
 const gameStage = document.querySelector("#gameStage");
 const gameRunner = document.querySelector("#gameRunner");
 const gameObstacle = document.querySelector("#gameObstacle");
+const gameObstacleImage = document.querySelector("#gameObstacleImage");
 const gameButton = document.querySelector("#gameButton");
 const gameScore = document.querySelector("#gameScore");
 const gameStatus = document.querySelector("#gameStatus");
@@ -82,10 +83,15 @@ function setCountdownValue(name, value) {
 }
 
 const gameVariants = [
-  { className: "pisa", label: "Pisa" },
-  { className: "colosseum", label: "Roma" },
-  { className: "gondola", label: "Venedik" },
-  { className: "duomo", label: "Duomo" },
+  { label: "Duomo", src: "assets/obstacles/florence_duomo.png" },
+  { label: "Gondol", src: "assets/obstacles/gondola.png" },
+  { label: "Pisa", src: "assets/obstacles/pisa_tower.png" },
+  { label: "Pizza", src: "assets/obstacles/pizza.png" },
+  { label: "Roma", src: "assets/obstacles/roman_ruins.png" },
+  { label: "Vespa", src: "assets/obstacles/vespa.png" },
+  { label: "Toskana", src: "assets/obstacles/wine_tuscany.png" },
+  { label: "Colosseum", src: "assets/obstacles/colosseum.png" },
+  { label: "David", src: "assets/obstacles/david_statue.png" },
 ];
 
 const gameState = {
@@ -102,17 +108,19 @@ const gameState = {
 };
 
 function setupGamePreview() {
-  if (!gameStage || !gameObstacle) return;
+  if (!gameStage || !gameObstacle || !gameObstacleImage) return;
 
   gameState.running = false;
   gameState.score = 0;
-  gameState.variantIndex = 0;
+  gameState.variantIndex = 2;
   gameState.obstacleX = Math.max(230, gameStage.clientWidth - 150);
   gameScore.textContent = "0";
   gameStatus.textContent = "Dokun ve zıp de";
   gameButton.textContent = "Zıp De";
-  gameObstacle.className = "italy-obstacle pisa";
+  gameObstacle.className = "italy-obstacle image-obstacle";
   gameObstacle.dataset.place = "Pisa";
+  gameObstacleImage.src = "assets/obstacles/pisa_tower.png";
+  gameObstacleImage.alt = "";
   gameObstacle.style.transform = `translateX(${gameState.obstacleX}px)`;
 }
 
@@ -125,7 +133,7 @@ function startGame() {
   gameState.score = 0;
   gameState.speed = 230;
   gameState.lastTime = 0;
-  gameState.variantIndex = 0;
+  gameState.variantIndex = -1;
 
   gameScore.textContent = "0";
   gameStatus.textContent = "Zıp de!";
@@ -183,14 +191,17 @@ function updateGame(time) {
 }
 
 function resetObstacle() {
-  if (!gameStage || !gameObstacle) return;
+  if (!gameStage || !gameObstacle || !gameObstacleImage) return;
 
-  const variant = gameVariants[gameState.variantIndex % gameVariants.length];
-  gameState.variantIndex += 1;
+  const nextIndex = Math.floor(Math.random() * gameVariants.length);
+  const variant = gameVariants[nextIndex === gameState.variantIndex ? (nextIndex + 1) % gameVariants.length : nextIndex];
+  gameState.variantIndex = gameVariants.indexOf(variant);
   gameState.obstacleX = gameStage.clientWidth + 82;
   gameState.passedObstacle = false;
-  gameObstacle.className = `italy-obstacle ${variant.className}`;
+  gameObstacle.className = "italy-obstacle image-obstacle";
   gameObstacle.dataset.place = variant.label;
+  gameObstacleImage.src = variant.src;
+  gameObstacleImage.alt = "";
   gameObstacle.style.transform = `translateX(${gameState.obstacleX}px)`;
 }
 
