@@ -1354,7 +1354,7 @@ svg {
 }
 
 .game-runner.is-jumping {
-  transform: translateY(-66px);
+  transform: translateY(-96px);
 }
 
 .runner-couple {
@@ -1835,7 +1835,7 @@ svg {
   }
 
   .game-runner.is-jumping {
-    transform: translateY(-52px) scale(0.74);
+    transform: translateY(-82px) scale(0.74);
   }
 
   .italy-obstacle {
