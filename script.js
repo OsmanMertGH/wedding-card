@@ -63,13 +63,12 @@ const translations = {
     "countdown.minutes": "Dakika",
     "countdown.seconds": "Saniye",
     "families.eyebrow": "Ailelerimiz",
-    "families.title": "Bu mutlu günümüzde",
     "families.family": "Ailesi",
     "families.father": "Babası",
     "families.mother": "Annesi",
     "rsvp.title": "Katılım Bilgisi",
     "rsvp.copy":
-      "Sizleri aramızda görmekten büyük mutluluk duyarız. Yer planlamasını en güzel şekilde yapabilmemiz için katılım durumunuzu ailelerimize bildirmenizi rica ederiz.",
+      "Sizleri aramızda görmekten mutluluk duyarız. Katılım durumunuzu 1 hafta öncesine kadar bildirmenizi rica ederiz. Davetimiz yemek ikramı eşliğinde olacaktır.",
     "rsvp.call": "Aramak için dokunun",
     "rsvp.phoneNiyaziAria": "Niyazi MERT telefonunu ara",
     "rsvp.phoneRizaAria": "Rıza Yalçın telefonunu ara",
@@ -78,6 +77,11 @@ const translations = {
     "actions.calendar": "Takvime Ekle",
     "actions.map": "Konumu Aç",
     "actions.share": "Davetiyeyi Paylaş",
+    "photo.eyebrow": "Anı Paylaşımı",
+    "photo.title": "Fotoğraflarınızı bizimle paylaşın",
+    "photo.copy": "Düğün gününden kareleri buradan yükleyebilirsiniz. Uygulama açılmazsa ayrı sekmede açmayı deneyin.",
+    "photo.frameTitle": "Fotoğraf yükleme uygulaması",
+    "photo.open": "Ayrı Sekmede Aç",
     "game.eyebrow": "Mini Oyun",
     "game.title": "Aşka doğru zıpla",
     "game.copy": "Ekrana dokunun veya boşluk tuşuna basın.",
@@ -138,13 +142,12 @@ const translations = {
     "countdown.minutes": "Minutes",
     "countdown.seconds": "Seconds",
     "families.eyebrow": "Our Families",
-    "families.title": "On this joyful day",
     "families.family": "Family",
     "families.father": "Father",
     "families.mother": "Mother",
     "rsvp.title": "RSVP",
     "rsvp.copy":
-      "We would be delighted to have you with us. To help us plan the seating in the best way, please let our families know whether you will be attending.",
+      "We would be happy to have you with us. Please let us know whether you will attend at least 1 week in advance. Dinner will be served during our celebration.",
     "rsvp.call": "Tap to call",
     "rsvp.phoneNiyaziAria": "Call Niyazi MERT",
     "rsvp.phoneRizaAria": "Call Rıza Yalçın",
@@ -153,6 +156,11 @@ const translations = {
     "actions.calendar": "Add to Calendar",
     "actions.map": "Open Location",
     "actions.share": "Share Invitation",
+    "photo.eyebrow": "Memory Sharing",
+    "photo.title": "Share your photos with us",
+    "photo.copy": "You can upload photos from the wedding day here. If the app does not open, try opening it in a new tab.",
+    "photo.frameTitle": "Photo upload application",
+    "photo.open": "Open in New Tab",
     "game.eyebrow": "Mini Game",
     "game.title": "Jump toward love",
     "game.copy": "Tap the screen or press Space.",
@@ -213,13 +221,12 @@ const translations = {
     "countdown.minutes": "Minuti",
     "countdown.seconds": "Secondi",
     "families.eyebrow": "Le nostre famiglie",
-    "families.title": "In questo giorno felice",
     "families.family": "Famiglia",
     "families.father": "Padre",
     "families.mother": "Madre",
     "rsvp.title": "Conferma presenza",
     "rsvp.copy":
-      "Saremo felicissimi di avervi con noi. Per organizzare al meglio la disposizione dei posti, vi chiediamo gentilmente di comunicare alle nostre famiglie la vostra presenza.",
+      "Saremo felici di avervi con noi. Vi chiediamo gentilmente di comunicare la vostra presenza almeno 1 settimana prima. Il nostro invito includerà il servizio cena.",
     "rsvp.call": "Tocca per chiamare",
     "rsvp.phoneNiyaziAria": "Chiama Niyazi MERT",
     "rsvp.phoneRizaAria": "Chiama Rıza Yalçın",
@@ -228,6 +235,11 @@ const translations = {
     "actions.calendar": "Aggiungi al calendario",
     "actions.map": "Apri posizione",
     "actions.share": "Condividi invito",
+    "photo.eyebrow": "Condivisione ricordi",
+    "photo.title": "Condividete le vostre foto con noi",
+    "photo.copy": "Potete caricare qui le foto del giorno del matrimonio. Se l'app non si apre, provate ad aprirla in una nuova scheda.",
+    "photo.frameTitle": "Applicazione per caricare foto",
+    "photo.open": "Apri in nuova scheda",
     "game.eyebrow": "Mini gioco",
     "game.title": "Salta verso l'amore",
     "game.copy": "Tocca lo schermo o premi Spazio.",
@@ -298,6 +310,10 @@ function applyLanguage(language) {
 
   document.querySelectorAll("[data-i18n-aria]").forEach((element) => {
     element.setAttribute("aria-label", t(element.dataset.i18nAria));
+  });
+
+  document.querySelectorAll("[data-i18n-title]").forEach((element) => {
+    element.setAttribute("title", t(element.dataset.i18nTitle));
   });
 
   document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {

@@ -1259,6 +1259,53 @@ svg {
   line-height: 1.75;
 }
 
+.photo-upload-card {
+  width: min(860px, 100%);
+  display: grid;
+  gap: 14px;
+  margin-top: 30px;
+  padding: 14px;
+  border: 1px solid rgba(185, 149, 85, 0.18);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 253, 249, 0.64)),
+    rgba(255, 255, 255, 0.72);
+  box-shadow: 0 22px 64px rgba(37, 33, 28, 0.08);
+}
+
+.photo-upload-card iframe {
+  width: 100%;
+  height: min(760px, 78vh);
+  min-height: 560px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--paper-warm);
+}
+
+.photo-upload-link {
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 22px;
+  border: 1px solid rgba(185, 149, 85, 0.28);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  box-shadow: 0 14px 34px rgba(37, 33, 28, 0.12);
+  transition:
+    transform 0.22s ease,
+    background 0.22s ease;
+}
+
+.photo-upload-link:hover {
+  transform: translateY(-2px);
+  background: var(--seal-red-dark);
+}
+
 .wedding-game {
   width: min(780px, 100%);
   margin-top: 30px;
@@ -1901,6 +1948,21 @@ svg {
   .wedding-game {
     padding: 12px;
     border-radius: 20px;
+  }
+
+  .photo-upload-card {
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  .photo-upload-card iframe {
+    min-height: 620px;
+    height: 74vh;
+    border-radius: 16px;
+  }
+
+  .photo-upload-link {
+    width: min(320px, 100%);
   }
 
   .score-board {
